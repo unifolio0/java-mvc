@@ -30,6 +30,7 @@ public class HandlerManagementManager {
         registerHandlerManagement(clazz);
         registerHandlerManagement(this.getClass());
         registerAnnotation(clazz);
+        registerAnnotation(this.getClass());
     }
 
     private void registerAnnotation(Class<?> clazz) {
