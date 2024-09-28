@@ -2,7 +2,7 @@ package com.interface21;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
-import com.interface21.context.stereotype.HandlerManagement;
+import com.interface21.webmvc.servlet.mvc.HandlerManagement;
 import com.interface21.webmvc.servlet.mvc.tobe.HandlerMapping;
 import java.util.List;
 import org.junit.jupiter.api.DisplayName;

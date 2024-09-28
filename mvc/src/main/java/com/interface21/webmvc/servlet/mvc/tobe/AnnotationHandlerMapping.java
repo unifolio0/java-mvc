@@ -1,12 +1,10 @@
 package com.interface21.webmvc.servlet.mvc.tobe;
 
-import com.interface21.HandlerManagementManager;
 import com.interface21.context.stereotype.Controller;
 import com.interface21.web.bind.annotation.RequestMethod;
 import jakarta.servlet.http.HttpServletRequest;
 import java.util.Set;
 import org.reflections.Reflections;
-import org.reflections.util.ClasspathHelper;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -23,8 +21,11 @@ public class AnnotationHandlerMapping implements HandlerMapping {
     @Override
     public void initialize() {
         System.out.println(this.getClass().getClassLoader().getName());
-        System.out.println("new Reflections(ClasspathHelper.forJavaClassPath())에서 만든거 넣어주기\n");
-        Reflections reflections = new Reflections(ClasspathHelper.forJavaClassPath());
+        System.out.println(Thread.currentThread().threadId() + "----AnnotationHandlerMapping. Thread Id");
+        System.out.println(Thread.currentThread().getContextClassLoader().getName() + " ---AnnotationHandlerMapping. Thread ClassLoader");
+        System.out.println(Reflections.class.getClassLoader().getName() + " ---AnnotationHandlerMapping. Reflections.class.getClassLoader");
+        System.out.println("new Reflections(com.techcourse)에서 만든거 넣어주기\n");
+        Reflections reflections = new Reflections("com.techcourse");
 
         Set<Class<?>> controllerClasses = reflections.getTypesAnnotatedWith(Controller.class);
         controllerClasses.stream()
@@ -34,14 +35,23 @@ public class AnnotationHandlerMapping implements HandlerMapping {
                 })
                 .forEach(handlerExecutions::addHandlerExecution);
 
-        System.out.println("HandlerManagementManager에서 만든거 넣어주기");
+        reflections = new Reflections("com.interface21");
+        controllerClasses = reflections.getTypesAnnotatedWith(Controller.class);
+        controllerClasses.stream()
+                .map(clazz -> {
+                    System.out.println(clazz.getClassLoader().getName() + " --- AnnotationHandlerMapping: " + clazz.getName());
+                    return clazz.getDeclaredMethods();
+                })
+                .forEach(handlerExecutions::addHandlerExecution);
+
+        /*System.out.println("HandlerManagementManager에서 만든거 넣어주기");
         HandlerManagementManager handlerManagementManager = HandlerManagementManager.getInstance();
         handlerManagementManager.getAnnotationHandler(Controller.class).stream()
                 .map(object -> {
                     System.out.println(object.getClass().getClassLoader().getName() + " ---AnnotationHandlerMapping: " + object.getClass().getName());
                     return object.getClass().getDeclaredMethods();
                 })
-                .forEach(handlerExecutions::addHandlerExecution);
+                .forEach(handlerExecutions::addHandlerExecution);*/
 
         log.info("Initialized AnnotationHandlerMapping!");
     }

@@ -1,7 +1,6 @@
 package com.interface21.webmvc.servlet.mvc;
 
 import com.interface21.HandlerManagementManager;
-import com.interface21.webmvc.servlet.mvc.tobe.AnnotationHandlerMapping;
 import com.interface21.webmvc.servlet.mvc.tobe.HandlerMapping;
 import jakarta.servlet.http.HttpServletRequest;
 import java.util.ArrayList;
@@ -16,9 +15,8 @@ public class HandlerMappings {
     }
 
     public void initialize() {
-        System.out.println("soso create");
-        AnnotationHandlerMapping annotationHandlerMapping = new AnnotationHandlerMapping();
-        annotationHandlerMapping.initialize();
+//        handlerMappings.addAll(List.of(handlerMapping));
+//        handlerMappings.forEach(HandlerMapping::initialize);
         HandlerManagementManager handlerManagementManager = HandlerManagementManager.getInstance();
         List<HandlerMapping> mappings = handlerManagementManager.getHandler(HandlerMapping.class);
         mappings.forEach(handlerMapping -> {

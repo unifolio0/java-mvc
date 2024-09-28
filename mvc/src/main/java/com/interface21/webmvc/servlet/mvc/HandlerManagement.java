@@ -1,4 +1,4 @@
-package com.interface21.context.stereotype;
+package com.interface21.webmvc.servlet.mvc;
 
 import java.lang.annotation.ElementType;
 import java.lang.annotation.Retention;

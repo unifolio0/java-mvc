@@ -8,20 +8,19 @@ import com.interface21.webmvc.servlet.view.JspView;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import java.util.concurrent.atomic.AtomicLong;
+import org.reflections.Reflections;
 
 @Controller
-public class RegisterController1 {
+public class RegisterTestController {
 
     private final AtomicLong atomicLong = new AtomicLong(2);
 
-    @RequestMapping(value = "/register", method = RequestMethod.POST)
-    public ModelAndView save(HttpServletRequest req, HttpServletResponse res) {
-
-        return new ModelAndView(new JspView("redirect:/index.jsp"));
-    }
-
-    @RequestMapping(value = "/register", method = RequestMethod.GET)
+    @RequestMapping(value = "/registertest", method = RequestMethod.GET)
     public ModelAndView show(HttpServletRequest req, HttpServletResponse res) {
+        System.out.println(this.getClass().getClassLoader().getName());
+        System.out.println(Thread.currentThread().threadId() + "----RegisterTestController. Thread Id");
+        System.out.println(Thread.currentThread().getContextClassLoader().getName() + " ---RegisterTestController. Thread ClassLoader");
+        System.out.println(Reflections.class.getClassLoader().getName() + " ---RegisterTestController. Reflections.class.getClassLoader");
         return new ModelAndView(new JspView("/register.jsp"));
     }
 }

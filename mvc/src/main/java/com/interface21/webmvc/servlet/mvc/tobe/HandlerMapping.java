@@ -1,6 +1,6 @@
 package com.interface21.webmvc.servlet.mvc.tobe;
 
-import com.interface21.context.stereotype.HandlerManagement;
+import com.interface21.webmvc.servlet.mvc.HandlerManagement;
 import jakarta.servlet.http.HttpServletRequest;
 
 @HandlerManagement

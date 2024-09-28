@@ -16,6 +16,7 @@ public class HandlerAdapters {
     }
 
     public void initialize() {
+//        handlerAdapters.addAll(List.of(handlerAdapter));
         HandlerManagementManager handlerManagementManager = HandlerManagementManager.getInstance();
         List<HandlerAdapter> adapters = handlerManagementManager.getHandler(HandlerAdapter.class);
         handlerAdapters.addAll(adapters);

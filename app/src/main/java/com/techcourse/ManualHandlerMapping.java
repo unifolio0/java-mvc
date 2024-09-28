@@ -9,6 +9,7 @@ import com.techcourse.controller.LogoutController;
 import jakarta.servlet.http.HttpServletRequest;
 import java.util.HashMap;
 import java.util.Map;
+import org.reflections.Reflections;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -23,10 +24,18 @@ public class ManualHandlerMapping implements HandlerMapping {
 
     @Override
     public void initialize() {
+        System.out.println(this.getClass().getClassLoader().getName());
+        System.out.println(Thread.currentThread().threadId() + "----ManualHandlerMapping. Thread Id");
+        System.out.println(Thread.currentThread().getContextClassLoader().getName() + " ---ManualHandlerMapping. Thread ClassLoader");
+        System.out.println(Reflections.class.getClassLoader().getName() + " ---ManualHandlerMapping. Reflections.class.getClassLoader");
         controllers.put("/", new ForwardController("/index.jsp"));
         controllers.put("/login", new LoginController());
         controllers.put("/login/view", new LoginViewController());
         controllers.put("/logout", new LogoutController());
+        System.out.println("check manual handler mapping controllers classloader");
+        for (Controller controller : controllers.values()) {
+            System.out.println(controller.getClass().getClassLoader().getName() + "---ManualHandlerMapping.controllers" + controller.getClass().getName());
+        }
 
         log.info("Initialized Handler Mapping!");
         controllers.keySet()

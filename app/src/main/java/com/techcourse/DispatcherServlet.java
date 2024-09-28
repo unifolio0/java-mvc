@@ -9,6 +9,7 @@ import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import java.util.Map;
+import org.reflections.Reflections;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -27,6 +28,10 @@ public class DispatcherServlet extends HttpServlet {
 
     @Override
     public void init() {
+        System.out.println(this.getClass().getClassLoader().getName());
+        System.out.println(Thread.currentThread().threadId() + "----DispatcherServlet. Thread Id");
+        System.out.println(Thread.currentThread().getContextClassLoader().getName() + " ---DispatcherServlet. Thread ClassLoader");
+        System.out.println(Reflections.class.getClassLoader().getName() + " ---DispatcherServlet. Reflections.class.getClassLoader");
         handlerMappings.initialize();
         handlerAdapters.initialize();
     }

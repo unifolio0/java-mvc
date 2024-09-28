@@ -1,7 +1,7 @@
 package com.interface21;
 
 import com.interface21.context.stereotype.Controller;
-import com.interface21.context.stereotype.HandlerManagement;
+import com.interface21.webmvc.servlet.mvc.HandlerManagement;
 import java.lang.annotation.Annotation;
 import java.util.List;
 import java.util.Map;

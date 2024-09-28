@@ -5,6 +5,7 @@ import com.techcourse.repository.InMemoryUserRepository;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import com.interface21.webmvc.servlet.mvc.asis.Controller;
+import org.reflections.Reflections;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -14,7 +15,10 @@ public class LoginController implements Controller {
 
     @Override
     public String execute(final HttpServletRequest req, final HttpServletResponse res) throws Exception {
-        System.out.println(this.getClass().getClassLoader().getName() + "--login");
+        System.out.println(this.getClass().getClassLoader().getName());
+        System.out.println(Thread.currentThread().threadId() + "----LoginController. Thread Id");
+        System.out.println(Thread.currentThread().getContextClassLoader().getName() + " ---LoginController. Thread ClassLoader");
+        System.out.println(Reflections.class.getClassLoader().getName() + " ---LoginController. Reflections.class.getClassLoader");
         if (UserSession.isLoggedIn(req.getSession())) {
             return "redirect:/index.jsp";
         }

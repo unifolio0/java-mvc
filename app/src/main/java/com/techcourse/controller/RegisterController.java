@@ -10,6 +10,7 @@ import com.techcourse.repository.InMemoryUserRepository;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import java.util.concurrent.atomic.AtomicLong;
+import org.reflections.Reflections;
 
 @Controller
 public class RegisterController {
@@ -18,7 +19,10 @@ public class RegisterController {
 
     @RequestMapping(value = "/register", method = RequestMethod.POST)
     public ModelAndView save(HttpServletRequest req, HttpServletResponse res) {
-        System.out.println(this.getClass().getClassLoader().getName() + "--register");
+        System.out.println(this.getClass().getClassLoader().getName());
+        System.out.println(Thread.currentThread().threadId() + "----RegisterController.POST Thread Id");
+        System.out.println(Thread.currentThread().getContextClassLoader().getName() + " ---RegisterController.POST Thread ClassLoader");
+        System.out.println(Reflections.class.getClassLoader().getName() + " ---RegisterController.POST Reflections.class.getClassLoader");
         final var user = new User(
                 atomicLong.getAndIncrement(),
                 req.getParameter("account"),
@@ -32,6 +36,10 @@ public class RegisterController {
 
     @RequestMapping(value = "/register", method = RequestMethod.GET)
     public ModelAndView show(HttpServletRequest req, HttpServletResponse res) {
+        System.out.println(this.getClass().getClassLoader().getName());
+        System.out.println(Thread.currentThread().threadId() + "----RegisterController.GET Thread Id");
+        System.out.println(Thread.currentThread().getContextClassLoader().getName() + " ---RegisterController.GET Thread ClassLoader");
+        System.out.println(Reflections.class.getClassLoader().getName() + " ---RegisterController.GET Reflections.class.getClassLoader");
         return new ModelAndView(new JspView("/register.jsp"));
     }
 }

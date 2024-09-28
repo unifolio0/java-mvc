@@ -9,6 +9,7 @@ import jakarta.servlet.annotation.HandlesTypes;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Set;
+import org.reflections.Reflections;
 
 @HandlesTypes(WebApplicationInitializer.class)
 public class SpringServletContainerInitializer implements ServletContainerInitializer {
@@ -16,6 +17,10 @@ public class SpringServletContainerInitializer implements ServletContainerInitia
     @Override
     public void onStartup(Set<Class<?>> webAppInitializerClasses, ServletContext servletContext)
             throws ServletException {
+        System.out.println(this.getClass().getClassLoader().getName());
+        System.out.println(Thread.currentThread().threadId() + "----SpringServletContainerInitializer. Thread Id");
+        System.out.println(Thread.currentThread().getContextClassLoader().getName() + " ---SpringServletContainerInitializer. Thread ClassLoader");
+        System.out.println(Reflections.class.getClassLoader().getName() + " ---SpringServletContainerInitializer. Reflections.class.getClassLoader");
         final List<WebApplicationInitializer> initializers = new ArrayList<>();
 
         if (webAppInitializerClasses != null) {
