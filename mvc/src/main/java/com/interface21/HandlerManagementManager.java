@@ -29,8 +29,8 @@ public class HandlerManagementManager {
     public void initialize(Class<?> clazz) {
         registerHandlerManagement(clazz);
         registerHandlerManagement(this.getClass());
-        registerAnnotation(clazz);
-        registerAnnotation(this.getClass());
+//        registerAnnotation(clazz);
+//        registerAnnotation(this.getClass());
     }
 
     private void registerAnnotation(Class<?> clazz) {

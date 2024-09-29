@@ -1,10 +1,10 @@
 package com.techcourse;
 
+import com.interface21.web.WebApplicationInitializer;
 import jakarta.servlet.ServletContext;
 import org.reflections.Reflections;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import com.interface21.web.WebApplicationInitializer;
 
 /**
  * Base class for {@link WebApplicationInitializer}
@@ -18,7 +18,7 @@ public class DispatcherServletInitializer implements WebApplicationInitializer {
 
     @Override
     public void onStartup(final ServletContext servletContext) {
-        Thread.currentThread().setContextClassLoader(Reflections.class.getClassLoader());
+        Thread.currentThread().setContextClassLoader(this.getClass().getClassLoader());
         System.out.println(this.getClass().getClassLoader().getName());
         System.out.println(Thread.currentThread().threadId() + "----DispatcherServletInitializer. Thread Id");
         System.out.println(Thread.currentThread().getContextClassLoader().getName() + " ---DispatcherServletInitializer. Thread ClassLoader");

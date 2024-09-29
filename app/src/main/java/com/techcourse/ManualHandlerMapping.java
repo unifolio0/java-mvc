@@ -9,6 +9,7 @@ import com.techcourse.controller.LogoutController;
 import jakarta.servlet.http.HttpServletRequest;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Set;
 import org.reflections.Reflections;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -28,6 +29,11 @@ public class ManualHandlerMapping implements HandlerMapping {
         System.out.println(Thread.currentThread().threadId() + "----ManualHandlerMapping. Thread Id");
         System.out.println(Thread.currentThread().getContextClassLoader().getName() + " ---ManualHandlerMapping. Thread ClassLoader");
         System.out.println(Reflections.class.getClassLoader().getName() + " ---ManualHandlerMapping. Reflections.class.getClassLoader");
+        Reflections reflections = new Reflections(this.getClass().getPackageName());
+        Set<Class<? extends Controller>> subTypesOf = reflections.getSubTypesOf(Controller.class);
+        for (Class<?> c : subTypesOf) {
+            System.out.println(c.getClassLoader().getName() + "------reflection test manual handler mapping" + c.getName());
+        }
         controllers.put("/", new ForwardController("/index.jsp"));
         controllers.put("/login", new LoginController());
         controllers.put("/login/view", new LoginViewController());

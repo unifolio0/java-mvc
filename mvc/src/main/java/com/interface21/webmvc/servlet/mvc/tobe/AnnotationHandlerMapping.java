@@ -30,7 +30,7 @@ public class AnnotationHandlerMapping implements HandlerMapping {
         Set<Class<?>> controllerClasses = reflections.getTypesAnnotatedWith(Controller.class);
         controllerClasses.stream()
                 .map(clazz -> {
-                    System.out.println(clazz.getClassLoader().getName() + " --- AnnotationHandlerMapping: " + clazz.getName());
+//                    System.out.println(clazz.getClassLoader().getName() + " --- AnnotationHandlerMapping: " + clazz.getName());
                     return clazz.getDeclaredMethods();
                 })
                 .forEach(handlerExecutions::addHandlerExecution);
@@ -39,19 +39,19 @@ public class AnnotationHandlerMapping implements HandlerMapping {
         controllerClasses = reflections.getTypesAnnotatedWith(Controller.class);
         controllerClasses.stream()
                 .map(clazz -> {
-                    System.out.println(clazz.getClassLoader().getName() + " --- AnnotationHandlerMapping: " + clazz.getName());
+//                    System.out.println(clazz.getClassLoader().getName() + " --- AnnotationHandlerMapping: " + clazz.getName());
                     return clazz.getDeclaredMethods();
                 })
                 .forEach(handlerExecutions::addHandlerExecution);
 
-        /*System.out.println("HandlerManagementManager에서 만든거 넣어주기");
-        HandlerManagementManager handlerManagementManager = HandlerManagementManager.getInstance();
-        handlerManagementManager.getAnnotationHandler(Controller.class).stream()
-                .map(object -> {
-                    System.out.println(object.getClass().getClassLoader().getName() + " ---AnnotationHandlerMapping: " + object.getClass().getName());
-                    return object.getClass().getDeclaredMethods();
-                })
-                .forEach(handlerExecutions::addHandlerExecution);*/
+//        System.out.println("HandlerManagementManager에서 만든거 넣어주기");
+//        HandlerManagementManager handlerManagementManager = HandlerManagementManager.getInstance();
+//        handlerManagementManager.getAnnotationHandler(Controller.class).stream()
+//                .map(object -> {
+//                    System.out.println(object.getClass().getClassLoader().getName() + " ---AnnotationHandlerMapping: " + object.getClass().getName());
+//                    return object.getClass().getDeclaredMethods();
+//                })
+//                .forEach(handlerExecutions::addHandlerExecution);
 
         log.info("Initialized AnnotationHandlerMapping!");
     }

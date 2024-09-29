@@ -16,10 +16,10 @@ public class HandlerExecution {
         try {
             this.method = method;
             Class<?> declaringClass = method.getDeclaringClass();
-            System.out.println(declaringClass.getClassLoader().getName() + " --- declaringClass: " + declaringClass.getName());
+//            System.out.println(declaringClass.getClassLoader().getName() + " --- declaringClass: " + declaringClass.getName());
             Constructor<?> constructor = declaringClass.getDeclaredConstructor();
             this.instance = constructor.newInstance();
-            System.out.println(instance.getClass().getClassLoader().getName() + " --- instance: " + instance.getClass().getName());
+//            System.out.println(instance.getClass().getClassLoader().getName() + " --- instance: " + instance.getClass().getName());
         } catch (NoSuchMethodException e) {
             throw new IllegalArgumentException("기본 생성자가 존재하지 않습니다");
         } catch (Exception e) {

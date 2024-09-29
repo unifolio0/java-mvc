@@ -1,10 +1,10 @@
 package com.techcourse.controller;
 
+import com.interface21.webmvc.servlet.mvc.asis.Controller;
 import com.techcourse.domain.User;
 import com.techcourse.repository.InMemoryUserRepository;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
-import com.interface21.webmvc.servlet.mvc.asis.Controller;
 import org.reflections.Reflections;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -15,6 +15,7 @@ public class LoginController implements Controller {
 
     @Override
     public String execute(final HttpServletRequest req, final HttpServletResponse res) throws Exception {
+        System.out.println(this.getClass().getClassLoader().getName() + ": LoginController ClassLoader");
         System.out.println(this.getClass().getClassLoader().getName());
         System.out.println(Thread.currentThread().threadId() + "----LoginController. Thread Id");
         System.out.println(Thread.currentThread().getContextClassLoader().getName() + " ---LoginController. Thread ClassLoader");
@@ -23,6 +24,10 @@ public class LoginController implements Controller {
             return "redirect:/index.jsp";
         }
 
+//        System.out.println("LoginController");
+//        for (User u : InMemoryUserRepository.database.values()) {
+//            System.out.println(u);
+//        }
         return InMemoryUserRepository.findByAccount(req.getParameter("account"))
                 .map(user -> {
                     log.info("User : {}", user);

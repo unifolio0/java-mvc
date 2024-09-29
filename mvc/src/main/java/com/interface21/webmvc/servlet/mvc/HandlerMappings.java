@@ -15,12 +15,14 @@ public class HandlerMappings {
     }
 
     public void initialize() {
+        System.out.println(Thread.currentThread().getContextClassLoader().getName() + "----HandlerMappings. Thread ClassLoader");
+        System.out.println(this.getClass().getClassLoader().getName() + "----HandlerMappings. this.getClass().getClassLoader().getName()");
 //        handlerMappings.addAll(List.of(handlerMapping));
 //        handlerMappings.forEach(HandlerMapping::initialize);
         HandlerManagementManager handlerManagementManager = HandlerManagementManager.getInstance();
         List<HandlerMapping> mappings = handlerManagementManager.getHandler(HandlerMapping.class);
         mappings.forEach(handlerMapping -> {
-            System.out.println(handlerMapping.getClass().getClassLoader().getName() + " ---HandlerMappings: " + handlerMapping.getClass().getName());
+//            System.out.println(handlerMapping.getClass().getClassLoader().getName() + " ---HandlerMappings: " + handlerMapping.getClass().getName());
             handlerMapping.initialize();
         });
         handlerMappings.addAll(mappings);

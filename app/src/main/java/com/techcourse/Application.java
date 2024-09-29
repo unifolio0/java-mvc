@@ -3,7 +3,6 @@ package com.techcourse;
 import com.interface21.HandlerManagementManager;
 import java.io.IOException;
 import java.util.stream.Stream;
-import org.reflections.Reflections;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -14,9 +13,9 @@ public class Application {
     private static final int DEFAULT_PORT = 8080;
 
     public static void main(final String[] args) throws Exception {
-        System.out.println(Thread.currentThread().threadId() + "----Application. Thread Id");
-        System.out.println(Thread.currentThread().getContextClassLoader().getName() + " ---Application. Thread ClassLoader");
-        System.out.println(Reflections.class.getClassLoader().getName() + " ---Application. Reflections.class.getClassLoader");
+//        System.out.println(Thread.currentThread().threadId() + "----Application. Thread Id");
+//        System.out.println(Thread.currentThread().getContextClassLoader().getName() + " ---Application. Thread ClassLoader");
+//        System.out.println(Reflections.class.getClassLoader().getName() + " ---Application. Reflections.class.getClassLoader");
         HandlerManagementManager handlerManagementManager = HandlerManagementManager.getInstance();
         handlerManagementManager.initialize(Application.class);
 

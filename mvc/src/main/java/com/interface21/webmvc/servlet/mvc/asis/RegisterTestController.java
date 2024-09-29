@@ -17,10 +17,10 @@ public class RegisterTestController {
 
     @RequestMapping(value = "/registertest", method = RequestMethod.GET)
     public ModelAndView show(HttpServletRequest req, HttpServletResponse res) {
-        System.out.println(this.getClass().getClassLoader().getName());
-        System.out.println(Thread.currentThread().threadId() + "----RegisterTestController. Thread Id");
-        System.out.println(Thread.currentThread().getContextClassLoader().getName() + " ---RegisterTestController. Thread ClassLoader");
-        System.out.println(Reflections.class.getClassLoader().getName() + " ---RegisterTestController. Reflections.class.getClassLoader");
+//        System.out.println(this.getClass().getClassLoader().getName());
+//        System.out.println(Thread.currentThread().threadId() + "----RegisterTestController. Thread Id");
+//        System.out.println(Thread.currentThread().getContextClassLoader().getName() + " ---RegisterTestController. Thread ClassLoader");
+//        System.out.println(Reflections.class.getClassLoader().getName() + " ---RegisterTestController. Reflections.class.getClassLoader");
         return new ModelAndView(new JspView("/register.jsp"));
     }
 }
